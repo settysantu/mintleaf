@@ -1,0 +1,13 @@
+<div id="topcat{{ module }}" class="cat-grid-wrap text-center animation">
+  <h3 class="module-product-heading">{{ heading_title }}</h3>
+  <div class="row">
+    {% for banner in banners %}
+      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+        <div class="cat-grid animation rounded-3">
+          <div class="cat-grid-image">{% if banner.link %}<a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive img-center" /></a>{% else %}<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive img-center" />{% endif %}</div>
+          {% if banner.link %}<h6 class="cat-grid-title"><a href="{{ banner.link }}">{{ banner.title }}</a></h6>{% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="module-product-wrap">
+<!-- Module Heading Starts -->
+  <h3 class="module-product-heading">{{ heading_title }}</h3>
+<!-- Module Heading Ends -->
+<!-- Nested Row Starts -->
+  <div class="row">
+  {% for product in products %}
+  <!-- Product Col Starts -->
+    <div class="product-layout col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <!-- Product Module Starts -->
+      <div class="product-thumb module-product animation rounded-3">
+      <!-- Product Image Starts -->
+        <div class="module-product-image">
+          <a href="{{ product.href }}">
+            <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive img-center" />
+          </a>
+        </div>
+      <!-- Product Image Ends -->
+      <!-- Product Caption Starts -->
+        <div class="module-product-caption">
+        <!-- Product Name Starts -->
+          <h6 class="module-product-title"><a href="{{ product.href }}">{{ product.name }}</a></h6>
+        <!-- Product Name Ends -->
+        <!-- Product Description Starts -->
+          <div class="module-product-description hidden">
+            {{ product.description }}
+          </div>
+        <!-- Product Description Ends -->
+        {% if product.rating %}
+        <!-- Product Ratings Starts -->
+          <div class="module-product-ratings">
+            {% for i in 1..5 %}
+              {% if product.rating < i %}
+                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+              {% else %}
+                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+              {% endif %}
+            {% endfor %}
+          </div>
+        <!-- Product Ratings Ends -->
+        {% endif %}
+        {% if product.price %}
+        <!-- Product Price Starts -->
+          <div class="module-product-price">
+            {% if not product.special %}
+              {{ product.price }}
+            {% else %}
+              <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+            {% endif %}
+          </div>
+        <!-- Product Price Ends -->
+        {% endif %}
+        <!-- Add To Cart Button Starts -->
+          <button type="button" class="btn module-product-btn-cart animation rounded-3" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> {{ button_cart }}</button>
+        <!-- Add To Cart Button Ends -->
+        </div>
+      <!-- Product Caption Ends -->
+      </div>
+    <!-- Product Module Ends -->
+    </div>
+  <!-- Product Col Ends -->
+  {% endfor %}  
+  </div>
+<!-- Nested Row Ends -->
+</div>

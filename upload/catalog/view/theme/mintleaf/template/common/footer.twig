@@ -1,0 +1,138 @@
+<!-- Footer Starts -->
+  <footer class="main-footer animation">
+  <!-- Nested Container Starts -->
+    <div class="container">
+    <!-- Nested Row Starts -->
+      <div class="row">
+      {% if informations %}
+      <!-- Information Column Starts -->
+        <div class="col-md-3 col-sm-4 col-xs-12">
+        <!-- Foot Col Starts -->
+          <div class="foot-col">
+          <!-- Foot Col Head Starts -->
+            <h4 class="foot-col-head text-color-brand font-weight-medium">{{ text_information }}</h4>
+          <!-- Foot Col Head Ends -->
+          <!-- Foot Col Body Starts -->
+            <div class="foot-col-body">
+            <!-- Footer Links Starts -->
+              <ul class="list-unstyled footer-links mb-xs-0 mb-sm-0 font-weight-medium">
+              {% for information in informations %}
+                <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+              {% endfor %}
+              </ul>
+            <!-- Footer Links Ends -->
+            </div>
+          <!-- Foot Col Body Ends -->
+          </div>
+        <!-- Foot Col Ends -->
+        </div>
+      <!-- Information Column Ends -->
+      {% endif %}
+      <!-- My Account Column Starts -->
+        <div class="col-md-3 col-sm-4 col-xs-12">
+        <!-- Foot Col Starts -->
+          <div class="foot-col">
+          <!-- Foot Col Head Starts -->
+            <h4 class="foot-col-head text-color-brand font-weight-medium">{{ text_account }}</h4>
+          <!-- Foot Col Head Ends -->
+          <!-- Foot Col Body Starts -->
+            <div class="foot-col-body">
+            <!-- Footer Links Starts -->
+              <ul class="list-unstyled footer-links mb-xs-0 mb-sm-0 font-weight-medium">
+                <li><a href="{{ account }}">{{ text_account }}</a></li>
+                <li><a href="{{ order }}">{{ text_order }}</a></li>
+                <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+                <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+              </ul>
+            <!-- Footer Links Ends -->
+            </div>
+          <!-- Foot Col Body Ends -->
+          </div>
+        <!-- Foot Col Ends -->
+        </div>
+      <!-- My Account Column Ends -->
+      <!-- Customer Services Column Starts -->
+        <div class="col-md-3 col-sm-4 col-xs-12">
+        <!-- Foot Col Starts -->
+          <div class="foot-col">
+          <!-- Foot Col Head Starts -->
+            <h4 class="foot-col-head text-color-brand font-weight-medium">{{ text_service }}</h4>
+          <!-- Foot Col Head Ends -->
+          <!-- Foot Col Body Starts -->
+            <div class="foot-col-body">
+            <!-- Footer Links Starts -->
+              <ul class="list-unstyled footer-links mb-xs-0 mb-sm-0 font-weight-medium">
+                <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+                <li><a href="{{ return }}">{{ text_return }}</a></li>
+                <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+              </ul>
+            <!-- Footer Links Ends -->
+            </div>
+          <!-- Foot Col Body Ends -->
+          </div>
+        <!-- Foot Col Ends -->
+        </div>
+      <!-- Customer Services Column Ends -->
+      <!-- Divider For Small Screens Starts -->
+        <div class="col-xs-12 hidden-xs hidden-md hidden-lg"><hr class="hr-1"></div>
+      <!-- Divider For Small Screens Ends -->
+      <!-- Contact Us Column Starts -->
+        <div class="col-md-3 col-xs-12">
+        <!-- Foot Col Starts -->
+          <div class="foot-col last">
+          <!-- Foot Col Head Starts -->
+            <h4 class="foot-col-head text-color-brand font-weight-medium">Contact Us</h4>
+          <!-- Foot Col Head Ends -->
+          <!-- Foot Col Body Starts -->
+            <div class="foot-col-body">
+            <!-- Footer Contact Links Starts -->
+              <ul class="list-unstyled footer-contact-links mb-xs-0 mb-sm-0 font-weight-medium">
+                <li><i class="fa fa-shopping-cart"></i> Mint Leaf Shopping Cart</li>
+                <li><i class="fa fa-map-marker"></i> My Company, Road No.</li>
+                <li><i class="fa fa-envelope-o"></i> E-mail : <a href="mailto:E-mail : info@yourdomain.com">info@yourdomain.com</a></li>
+                <li><i class="fa fa-phone"></i> Phone: <a href="tel:0012345678900">001 234 567 8900</a></li>
+              </ul>
+            <!-- Footer Contact Links Ends -->
+            </div>
+          <!-- Foot Col Body Ends -->
+          </div>
+        <!-- Foot Col Ends -->
+        </div>
+      <!-- Contact Us Column Ends -->
+      </div>
+    <!-- Nested Row Ends -->
+    </div>
+  <!-- Nested Container Ends -->
+  </footer>
+<!-- Footer Ends -->
+<!-- Copyright Starts -->
+  <div class="copyright">
+  <!-- Nested Container Starts -->
+    <div class="container text-center-xs text-center-sm clearfix">
+    <!-- Copyright Text Starts -->
+      <div class="pull-left-lg pull-left-md">
+        <p class="copyright-text mb-lg-0 mb-md-0">{{ powered }}. Theme By <a href="https://www.patreon.com/settysantu" target="_blank">Santosh Setty</a></p>
+      </div>
+    <!-- Copyright Text Ends -->
+    <!-- Payment Gateway Starts -->
+      <div class="pull-right-lg pull-right-md">
+        <ul class="list-unstyled list-inline mb-0 text-right-lg text-right-md animation">
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+    <!-- Payment Gateway Ends -->
+    </div>
+  <!-- Nested Container Ends -->
+  </div>
+<!-- Copyright Ends -->
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+<!--
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//-->
+</body></html>

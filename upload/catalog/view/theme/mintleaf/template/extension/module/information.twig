@@ -1,0 +1,12 @@
+<div class="sblock-1 rounded-3">
+  <h5 class="sblock-1-heading">{{ heading_title }}</h5>
+  <div class="sblock-1-content">
+    <div class="list-group animation">
+    {% for information in informations %}
+      <a href="{{ information.href }}" class="list-group-item">{{ information.title }}</a>
+    {% endfor %}
+      <a href="{{ contact }}" class="list-group-item">{{ text_contact }}</a>
+      <a href="{{ sitemap }}" class="list-group-item">{{ text_sitemap }}</a>
+    </div>
+  </div>  
+</div>

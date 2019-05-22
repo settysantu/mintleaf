@@ -1,0 +1,133 @@
+{{ header }}
+<div id="product-search" class="container">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+      <h4 class="page-heading-1 alt">{{ heading_title }}</h4>
+      {% if products %}
+        <div class="product-sort-wrap rounded-3">
+          <div class="row">
+            <div class="col-md-2 col-xs-4">
+              <div class="btn-group">
+                <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-th-list"></i></button>
+                <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="{{ button_grid }}"><i class="fa fa-th"></i></button>
+              </div>
+            </div>
+            <div class="col-md-3 col-xs-8 text-right-sm text-right-xs">
+              <div class="form-group"><a href="{{ compare }}" id="compare-total" class="btn btn-link">{{ text_compare }}</a></div>
+            </div>
+            <div class="col-md-4 col-xs-6">
+              <div class="form-group input-group">
+                <label class="input-group-addon" for="input-sort">{{ text_sort }}</label>
+                <select id="input-sort" class="form-control" onchange="location = this.value;">
+                  {% for sorts in sorts %}
+                    {% if sorts.value == '%s-%s'|format(sort, order) %}
+                      <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+                    {% else %}
+                      <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3 col-xs-6">
+              <div class="form-group input-group">
+                <label class="input-group-addon" for="input-limit">{{ text_limit }}</label>
+                <select id="input-limit" class="form-control" onchange="location = this.value;">
+                  {% for limits in limits %}
+                    {% if limits.value == limit %}
+                      <option value="{{ limits.href }}" selected="selected">{{ limits.text }}</option>
+                    {% else %}
+                      <option value="{{ limits.href }}">{{ limits.text }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="row"> {% for product in products %}
+      <!-- Product Col Starts -->
+        <div class="product-layout product-list col-xs-12">
+        <!-- Product Module Starts -->
+          <div class="product-thumb module-product animation">
+          <!-- Product Image Starts -->
+            <div class="module-product-image">
+              <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a>
+            </div>
+          <!-- Product Image Ends -->
+          <!-- Product Caption Starts -->
+            <div class="module-product-caption">
+            <!-- Product Name Starts -->
+              <h6 class="module-product-title"><a href="{{ product.href }}">{{ product.name }}</a></h6>
+            <!-- Product Name Ends -->
+            <!-- Product Description Starts -->
+              <div class="module-product-description">
+                {{ product.description }}
+              </div>
+            <!-- Product Description Ends -->
+            {% if product.rating %}
+            <!-- Product Ratings Starts -->
+              <div class="module-product-ratings">
+                {% for i in 1..5 %}
+                  {% if product.rating < i %}
+                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                  {% else %}
+                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            <!-- Product Ratings Ends -->
+            {% endif %}
+             {% if product.price %}
+              <!-- Product Price Starts -->
+                <div class="module-product-price">
+                  {% if not product.special %}
+                    {{ product.price }}
+                  {% else %}
+                    <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+                  {% endif %}
+                  {% if product.tax %}
+                  <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+                  {% endif %}
+                </div>
+              <!-- Product Price Ends -->
+              {% endif %}
+              <!-- Add To Cart Button Starts -->
+                <button type="button" class="btn module-product-btn-cart animation" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> {{ button_cart }}</button>
+              <!-- Add To Cart Button Ends -->
+            </div>
+          <!-- Product Caption Ends -->
+          </div>
+        <!-- Product Module Ends -->
+        </div>
+      <!-- Product Col Ends -->
+        {% endfor %} </div>
+        <div class="pagination-wrap">
+          <div class="row">
+            <div class="col-sm-6 text-left-lg text-left-md text-left-sm results">{{ results }}</div>
+            <div class="col-sm-6 text-right-lg text-right-md text-right-sm">{{ pagination }}</div>
+          </div>
+        </div>
+      {% endif %}
+      {% if not categories and not products %}
+      <p>{{ text_empty }}</p>
+      <div class="buttons clearfix">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+{{ footer }}
