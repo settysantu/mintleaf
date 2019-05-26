@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<modification>
+
+    <name>Mint Leaf</name>
+    <code>mintleaf</code>
+    <version>1.0.0</version>
+    <author>Santosh Setty</author>
+    <link>http://www.santoshsetty.com</link>
+
+    <file path="catalog/controller/common/menu.php">
+        <operation>
+            <search><![CDATA[return $this->load->view('common/menu', $data);]]></search>
+            <add position="before"><![CDATA[if ($this->request->server['HTTPS']) {
+        $server = $this->config->get('config_ssl');
+        } else {
+            $server = $this->config->get('config_url');
+        }
+
+        $data['name'] = $this->config->get('config_name');
+
+        $data['search'] = $this->load->controller('common/search');
+        $data['cart'] = $this->load->controller('common/cart');
+
+        if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+            $data['logo'] = $server . 'image/' . $this->config->get('config_logo');
+        } else {
+            $data['logo'] = '';
+        }]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/language/en-gb/common/cart.php">
+        <operation>
+            <search><![CDATA[%s item(s) - %s]]></search>
+            <add position="replace"><![CDATA[%s]]></add>
+        </operation>
+    </file>
+
+</modification>
